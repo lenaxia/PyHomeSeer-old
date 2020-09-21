@@ -11,11 +11,11 @@ URL_TEMPLATE = "{protocol}://{host}:{port}/JSON"
 
 class HomeSeerClient:
     """ Client Definition """
-    def __init__(self, host="127.0.0.1", username="", password=""):
+    def __init__(self, host="127.0.0.1", port = "80", username="", password=""):
         """ The HomeSeer Client """
 
         self.host = host
-        self.port = 80
+        self.port = port 
         self.username = username
         self.password = password
         self.protocol = "http"
