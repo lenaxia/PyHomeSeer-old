@@ -1,3 +1,5 @@
+THIS IS OLD AND NO LONGER UPDATED. Needed to make it private due to code check in issues.
+
 pyhomeseer |Build Status|
 ===========================
 
