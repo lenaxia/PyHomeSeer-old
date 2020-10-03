@@ -21,15 +21,7 @@ class HomeSeerClient:
         self.protocol = "http"
         self.client_initialized = True
 
-    def get_devices(self, ref=None, location=None, location2=None):
-        """ Retrieve all available devices from HomeSeer """
-
-        params = {
-            "request": "getstatus",
-            "ref": ref,
-            "location": location,
-            "location2": location2
-        }
+    def get_objects(self, params=None):
 
         devices_request = requests.get(self._build_url(), auth=self._build_auth(), params=params)
 
@@ -44,6 +36,50 @@ class HomeSeerClient:
         all_devices = list(map(Device, device_json_response.get("Devices")))
 
         return all_devices
+
+
+    def get_devices(self, ref=None, location=None, location2=None):
+        """ Retrieve all available devices from HomeSeer """
+
+        params = {
+            "request": "getstatus",
+            "ref": ref,
+            "location": location,
+            "location2": location2
+        }
+
+        return self.get_objects(params)
+
+    def get_rootdevice(self, ref):
+        """ get the name of a device by ref number """
+        """ reference: https://forums.homeseer.com/forum/developer-support/scripts-plug-ins-development-and-libraries/hs3-scripting/109336-how-to-use-json-control-interface-get-response-to-obtain-device-status-device-name """
+        
+        params = {
+                "request": "getstatus",
+                "ref" : ref
+                }
+
+        device = self.get_objects(params)[0]
+
+        rootStr = "Root Device" 
+
+        if rootStr in device.device_type:
+            return device
+
+        for deviceref in device.associated_devices:
+            associated_params = {
+                    "request": "getstatus",
+                    "ref": deviceref
+                    }
+
+            assc_device = self.get_objects(associated_params)[0]
+
+            if rootStr in assc_device.device_type:
+                return assc_device
+
+        return False
+
+                
 
     def get_control(self, ref=None):
         """ Retrieve all available controllable devices from HomeSeer """

@@ -21,6 +21,16 @@ class Device:
         return self.device_data.get("name")
 
     @property
+    def associated_devices(self):
+        """ The Device's associated devices """
+        return self.device_data.get("associated_devices")
+
+    @property
+    def device_type(self):
+        """ The Device's device_type_string """
+        return self.device_data.get("device_type_string")
+
+    @property
     def location(self):
         """ The Device's primary location """
         return self.device_data.get("location")
