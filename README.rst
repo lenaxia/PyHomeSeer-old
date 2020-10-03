@@ -4,7 +4,7 @@ pyhomeseer |Build Status|
 .. |Build Status| image:: https://travis-ci.org/legrego/PyHomeSeer.svg?branch=master
    :target: https://travis-ci.org/legrego/PyHomeSeer
 
-Library for Python 3 to communicate with the HomeSeer 3. It
+Library for Python 3 to communicate with the HomeSeer 3 and 4. It
 currently supports:
 
 -  Retrieving devices via refs and location
@@ -24,6 +24,6 @@ See examples folder for usage
 Maintainers
 -----------
 
--  Larry Gregory (`@legrego`_)
+-  Original Creator: Larry Gregory (`@legrego`_)
 
 .. _@legrego: https://github.com/legrego
